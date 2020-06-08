@@ -8,17 +8,17 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace BigSchool.Controllers
+namespace Lab3_4_5.Controllers
 {
     public class CourseController : Controller
     {
+        // GET: Course
         private readonly ApplicationDbContext _dbContext;
         public CourseController()
         {
             _dbContext = new ApplicationDbContext();
         }
         [Authorize]
-        [HttpPost]
         public ActionResult Create()
         {
             var viewModel = new CourseViewModel
@@ -27,28 +27,27 @@ namespace BigSchool.Controllers
             };
             return View(viewModel);
         }
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(CourseViewModel viewModel)
         {
             if (!ModelState.IsValid)
             {
                 viewModel.Categories = _dbContext.Categories.ToList();
                 return View("Create", viewModel);
-
             }
             var course = new Course
-
             {
                 LecturerId = User.Identity.GetUserId(),
                 DateTime = viewModel.GetDateTime(),
                 CategoryId = viewModel.Category,
                 Place = viewModel.Place
             };
-
             _dbContext.Courses.Add(course);
             _dbContext.SaveChanges();
 
             return RedirectToAction("Index", "Home");
         }
-
     }
 }
