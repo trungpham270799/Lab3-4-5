@@ -5,13 +5,13 @@ using System.Globalization;
 namespace Lab3_4_5.ViewModels
 {
 
-       public class FutureDate : ValidationAttribute
+    public class FutureDate : ValidationAttribute
     {
         public override bool IsValid(object value)
         {
             DateTime dateTime;
             var isValid = DateTime.TryParseExact(Convert.ToString(value),
-            "dd/MM/yyyy",
+            "MM/dd/yyyy",
             CultureInfo.CurrentCulture,
             DateTimeStyles.None,
             out dateTime);

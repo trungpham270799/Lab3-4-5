@@ -1,15 +1,6 @@
 ﻿body {
     padding-top: 50px;
-    padding-bottom: 20px;   
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 21px;
-    line-height: 2;
-    color: black;
-    background-color: #ffffff;
-}
-.navbar-inverse {
-    background-color: slategrey;
-    border-color: cyan;
+    padding-bottom: 20px;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -31,3 +22,64 @@ select,
 textarea {
     max-width: 280px;
 }
+.navbar-inverse {
+    background-color: #d41d50;
+    border-color: #fbf6f6;
+}
+.navbar-inverse .navbar-nav > li > a {
+    color: white;
+}
+.navbar-inverse .navbar-brand {
+    color: white;
+
+}
+.course {
+    list-style: none;
+}
+.course > li {
+        position: relative;
+        margin-bottom: 30px;
+}
+
+        .course > li .date {
+            text-align: center;
+            background-color: #d41d59;
+            color: white;
+            width: 60px;
+            border-radius: 8px;
+        }
+
+        .course > li .details {
+            position: absolute;
+            top: 0;
+            left: 70px;
+        }
+.course {
+    list-style:none;
+}
+.course > li {
+    position: relative;
+    margin-bottom: 30px;
+}
+.course > li .date {
+    text-align: center;
+    background-color: #d41d50;
+    color: white;
+    width: 60px;
+    border-radius: 8px;
+}
+
+.course > li .details {
+    position: absolute;
+    top: 0;
+    left: 70px;
+}
+
+    .course > li .action {
+        displayL none;
+        left: 70px;
+        position: absolute;
+    }
+    .course > li:hover . action {
+        display: block;
+    }

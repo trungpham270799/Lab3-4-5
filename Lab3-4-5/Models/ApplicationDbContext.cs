@@ -11,6 +11,9 @@ namespace Lab3_4_5.Models
     {
         public DbSet<Course> Courses { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Attendance> Attendances { get; set; }
+        public object Followings { get; internal set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
@@ -19,6 +22,23 @@ namespace Lab3_4_5.Models
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
+        }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Attendance>()
+                .HasRequired(a => a.Course)
+                .WithMany()
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<ApplicationUser>()
+                .HasMany(u => u.Follwers)
+                .WithRequired(f => f.Followee)
+                .WillCascadeOnDelete(false);
+            modelBuilder.Entity<ApplicationUser>()
+               .HasMany(u => u.Follwees)
+               .WithRequired(f => f.Follower)
+               .WillCascadeOnDelete(false);
+            base.OnModelCreating(modelBuilder);
         }
     }
 }
